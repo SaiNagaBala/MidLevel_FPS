@@ -5,6 +5,7 @@ using UnityEngine;
 public class AudioController : MonoBehaviour
 {
     // Start is called before the first frame update
+    public List<AudioClip> audioClips;
     AudioSource audioSource;
     void Start()
     {
@@ -18,6 +19,16 @@ public class AudioController : MonoBehaviour
     }
     public void ShotFire()
     {
-        audioSource.Play();
+        audioSource.PlayOneShot(audioClips[0]);
+    }
+    public void WalkWithRifleSound()
+    {
+        audioSource.PlayOneShot(audioClips[1]);
+
+    }
+
+    public void JumpSound()
+    {
+        audioSource.PlayOneShot(audioClips[2]);
     }
 }

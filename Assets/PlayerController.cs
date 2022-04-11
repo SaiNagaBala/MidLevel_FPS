@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     float inputX;
     float inputz;
-    int ammo = 0;
+    int ammo = 50;
     int medical = 100;
     int maxAmmo = 100;
     int maxMedical = 100;
@@ -85,8 +85,10 @@ public class PlayerController : MonoBehaviour
         
         if(Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
+            
             rb.AddForce(Vector3.up * playerJumpForce);
-           
+            animator.SetTrigger("IsJumping");
+
         }
         float mouseX = Input.GetAxis("Mouse X")*playerRotationSpeed;
         float mouseY = Input.GetAxis("Mouse Y")*playerRotationSpeed;
