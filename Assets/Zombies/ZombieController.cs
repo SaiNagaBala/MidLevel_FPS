@@ -1,20 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour
 {
     Animator anim;
+    public GameObject target;
+    NavMeshAgent agent;
+
+    public List<AudioClip> audioClips;
+    AudioSource audioSource;
+
 
     // Start is called before the first frame update
     void Start()
     {
         anim = this.GetComponent<Animator>();
+        anim.SetBool("isWalking", true);
+        agent = this.GetComponent<NavMeshAgent>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        agent.SetDestination(target.transform.position);
+
+        if (agent.remainingDistance > agent.stoppingDistance)
+        {
+            anim.SetBool("isWalking", true);
+            audioSource.PlayOneShot(audioClips[0]);
+            anim.SetBool("isAttacking", false);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isAttacking", true);
+            audioSource.PlayOneShot(audioClips[1]);
+        }
+        /*
         if (Input.GetKey(KeyCode.W))
         {
             anim.SetBool("isWalking", true);
@@ -40,6 +65,6 @@ public class ZombieController : MonoBehaviour
         {
             anim.SetBool("isDead", true);
         }
-
+        */
     }
 }
