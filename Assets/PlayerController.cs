@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
         if(Physics.SphereCast(transform.position,colliders.radius,Vector3.down,out rayCastHit,(colliders.height/2)-colliders.radius+0.1f))
         {
             return true;
+
         }
         else
             return false;
@@ -123,6 +124,7 @@ public class PlayerController : MonoBehaviour
         angleX = Mathf.Clamp(angleX, minX, maxX);
         n.x = Mathf.Tan(Mathf.Deg2Rad * angleX*0.5f);
         return (n);
+
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -146,7 +148,7 @@ public class PlayerController : MonoBehaviour
             // Need to Trigger dead sound , when medical is zero
             medical = Mathf.Clamp(medical - 10, 0, maxMedical);
             Debug.Log("Medical: "+medical);
-        }
+        }  
     }
 }
 

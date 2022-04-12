@@ -7,6 +7,7 @@ TagManager:
   - Ammo
   - MedicalBox
   - Lava
+  - Medical
   layers:
   - Default
   - TransparentFX

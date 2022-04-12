@@ -24,10 +24,16 @@ public class AudioController : MonoBehaviour
     public void WalkWithRifleSound()
     {
         audioSource.PlayOneShot(audioClips[1]);
+        //audioSource.PlayOneShot(audioClips[2]);
+        //audioSource.PlayOneShot(audioClips[3]);
 
     }
 
     public void JumpSound()
+    {
+        audioSource.PlayOneShot(audioClips[1]);
+    }
+    public void LandSound()
     {
         audioSource.PlayOneShot(audioClips[2]);
     }
