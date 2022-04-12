@@ -148,7 +148,8 @@ public class PlayerController : MonoBehaviour
             // Need to Trigger dead sound , when medical is zero
             medical = Mathf.Clamp(medical - 10, 0, maxMedical);
             Debug.Log("Medical: "+medical);
-        }  
+        }
+        
     }
 }
 
