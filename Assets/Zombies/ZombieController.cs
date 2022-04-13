@@ -15,6 +15,8 @@ public class ZombieController : MonoBehaviour
     //public List<AudioClip> audioClips;
     //AudioSource audioSource;
 
+    public GameObject ragDollPrefab;
+
     enum STATE { IDLE,WONDER,CHASE,ATTACK,DEAD};
     STATE state = STATE.IDLE;
 
@@ -73,11 +75,21 @@ public class ZombieController : MonoBehaviour
             anim.SetBool("isDead", true);
         }
         */
+
+        /*if(Input.GetKeyDown(KeyCode.R))
+        {
+            GameObject tempRd = Instantiate(ragDollPrefab, this.transform.position, this.transform.rotation);
+            tempRd.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward*10000);
+            Destroy(this.gameObject);
+            return;
+        }*/
+
         if (target==null)
         {
             target = GameObject.FindGameObjectWithTag("Player");
             return;
         }
+
 
         switch (state)
         {
@@ -153,7 +165,12 @@ public class ZombieController : MonoBehaviour
                 break;
 
             case STATE.DEAD:
+
+                GameObject tempRd = Instantiate(ragDollPrefab, this.transform.position, this.transform.rotation);
+                tempRd.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 10000);
+                Destroy(this.gameObject);
                 break;
+
 
             default:
                 break;

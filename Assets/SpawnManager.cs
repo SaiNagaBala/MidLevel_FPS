@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     public int number;
     public float spawnRadius;
     public bool spawnOnStart = true;
+    
     // Start is called before the first frame update
     void Start()
     {

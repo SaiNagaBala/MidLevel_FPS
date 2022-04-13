@@ -8,6 +8,7 @@ TagManager:
   - MedicalBox
   - Lava
   - Medical
+  - Zombie
   layers:
   - Default
   - TransparentFX
