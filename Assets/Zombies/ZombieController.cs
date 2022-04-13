@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class ZombieController : MonoBehaviour
 {
-    Animator anim;
+   public Animator anim;
     public GameObject target;
     NavMeshAgent agent;
 
@@ -17,8 +17,8 @@ public class ZombieController : MonoBehaviour
 
     public GameObject ragDollPrefab;
 
-    enum STATE { IDLE,WONDER,CHASE,ATTACK,DEAD};
-    STATE state = STATE.IDLE;
+    public enum STATE { IDLE,WONDER,CHASE,ATTACK,DEAD};
+    public STATE state = STATE.IDLE;
 
 
     // Start is called before the first frame update
@@ -212,5 +212,11 @@ public class ZombieController : MonoBehaviour
         {
             return false;
         }
+    }
+    public void KillZombie()
+    {
+        TurnOffAllTriggerAnim();
+        anim.SetBool("isDed", true);
+        state = STATE.DEAD;
     }
 }

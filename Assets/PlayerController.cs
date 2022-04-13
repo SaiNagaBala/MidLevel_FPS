@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
     // Start is called before the first frame update
     public float playerSpeed;
     public float playerJumpForce;
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
     int maxMedical = 100;
     int reloadAmmo = 0;
     int maxReloadAmmo = 10;
+    public Transform bulletLaunch;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -150,6 +152,32 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Medical: "+medical);
         }
         
+    }
+    void ZombieGotHit()
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(bulletLaunch.position,bulletLaunch.forward,out hitInfo,100f))
+        {
+            if(UnityEngine.Random.Range(0,10)<5)
+            {
+                GameObject hitZombie = hitInfo.collider.gameObject;
+                if (hitZombie.tag == "Zombie")
+                {
+                    GameObject tempRd = hitZombie.GetComponent<ZombieController>().ragDollPrefab;
+                    GameObject newTempRd = Instantiate(tempRd, hitZombie.transform.position, hitZombie.transform.rotation);
+                    newTempRd.transform.Find("Hips").GetComponent<Rigidbody>().AddForce(Camera.main.transform.forward * 1000);
+                    Destroy(hitZombie);
+                }
+                else
+                {
+                    hitZombie.GetComponent<ZombieController>().KillZombie();
+                    //hitZombie.GetComponent<ZombieController>().TurnOffAllTriggerAnim();
+                    //hitZombie.GetComponent<ZombieController>().anim.SetBool("isDed", true);
+                    //hitZombie.GetComponent<ZombieController>().state=hitZombie.GetComponent<ZombieController>().state.
+                }
+            }
+            
+        }
     }
 }
 
